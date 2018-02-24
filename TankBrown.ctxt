@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=TankBrown
+comment0.text=\n\ Write\ a\ description\ of\ class\ TankBrown\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=leben
+comment1.target=TankBrown(int)
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\n\ Act\ -\ do\ whatever\ the\ defender\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment3.params=
+comment3.target=void\ shoot()
+comment4.params=schaden
+comment4.target=void\ schadenVerursachen(int)
+comment4.text=\n\ Treffer,\ \ this\ asteroid\ dealing\ the\ given\ amount\ of\ damage.\n
+numComments=5

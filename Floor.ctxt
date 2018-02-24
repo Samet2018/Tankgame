@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Floor
+comment0.text=\n\ Write\ a\ description\ of\ class\ Floor\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Floor()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Floor.\n\ \n
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ prepare()
+comment4.params=
+comment4.target=void\ createTankBrown()
+comment5.params=
+comment5.target=void\ countScore()
+comment6.params=end
+comment6.target=int\ getRandomNumber(int)
+comment7.params=
+comment7.target=void\ showScore()
+numComments=8
