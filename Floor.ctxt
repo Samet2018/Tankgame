@@ -16,4 +16,6 @@ comment6.params=end
 comment6.target=int\ getRandomNumber(int)
 comment7.params=
 comment7.target=void\ showScore()
-numComments=8
+comment8.params=num
+comment8.target=void\ createBlock(int)
+numComments=9

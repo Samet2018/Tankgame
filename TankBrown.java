@@ -22,10 +22,11 @@ public class TankBrown extends Tank
    int speed = 2;  
    int topY = 10;  
    int lowerY = 1;       
-    
+
     public TankBrown (int leben){
        this.leben = leben;
-        
+
+
     }
 
       
@@ -36,7 +37,6 @@ public class TankBrown extends Tank
    public void act() 
    {
        lowerY = getWorld().getHeight()-10;
-       
        if (getY() < topY && direction == -1) {  
            direction = 1;  
        }  
