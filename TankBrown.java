@@ -16,64 +16,87 @@ public class TankBrown extends Tank
     /** Wenn die Lebenspunkte 0 erreichen, wird der Tank explodieren. */
     private int leben;
     
-    int timer = 0;
+    private int timer = 0;
     
-   int direction = 1;  
-   int speed = 2;  
-   int topY = 10;  
-   int lowerY = 1;       
+    private TankBrownFiretube firetube = new TankBrownFiretube();
+
+    private boolean tubeAdded = false;
+    
+    private int direction = 1;  
+    private int speed = 2;  
+    private int topY = 10;  
+    private int lowerY = 1;       
 
     public TankBrown (int leben){
        this.leben = leben;
-
-
     }
 
-      
+    
     /**
-     * Act - do whatever the defender wants to do. This method is called whenever
+     * Act - do whatever the Rocket wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-   public void act() 
-   {
-       lowerY = getWorld().getHeight()-10;
-       if (getY() < topY && direction == -1) {  
+    public void act() 
+    { 
+        if(tubeAdded == false){
+             getWorld().addObject(firetube, getX(), getY());
+
+             firetube.setLocation(getX()-40, getY());
+             tubeAdded = true;
+        }
+        
+        if(Greenfoot.isKeyDown("space"))
+        {
+            //Projectile projectile = new Projectile();
+            //getWorld().addObject(projectile, getX(), getY());
+
+            //Bullet bullet = new Bullet();
+            //World.addObject(bullet, 200, 200);
+        }    
+        
+         lowerY = getWorld().getHeight()-10;
+         if (getY() < topY && direction == -1) {  
            direction = 1;  
-       }  
-       if (getY() > lowerY && direction == 1) {  
+        }  
+        if (getY() > lowerY && direction == 1) {  
            direction = -1;  
-       }  
+        }  
         setLocation(getX(), getY() + (direction * speed));
-        
-        
-       //MouseInfo mouse = Greenfoot.getMouseInfo();          
-       //turnTowards(mouse.getX(), mouse.getY());
+         firetube.setLocation(getX()-40, getY());
 
-       // shoot();
-
-   }    
+        //setLocation(getX(), getY());
+        shoot();
+    }
+        
+    private int zeit=0;
+    private int warteZeit=100;        
 
     public void shoot(){
+        
+        zeit++;
+        if(zeit > warteZeit){
+            GegnerBullet bullet = new GegnerBullet();    
+           // bullet.move(-5);
+            bullet.setRotation(180);
+            getWorld().addObject(bullet, getX()-40, getY());
+            zeit=0;
 
-        MouseInfo mouse = Greenfoot.getMouseInfo();
-        if(Greenfoot.mouseClicked(null)){
-            Projectile projectile = new Projectile(getX(),getY());
-            projectile.setRotation(getRotation());
-            int x = getX();
-            int y = getY();
-            // TODO: verschiebung von projektilen zu Kanonenrohrspitze
-            getWorld().addObject(projectile,x, y);         
         }
+
     }
+           
+        
+    
     /**
-     * Treffer,  this asteroid dealing the given amount of damage.
+     * Treffer,  this tank dealing the given amount of damage.
      */
     public void schadenVerursachen(int schaden) {
         leben = leben - schaden;
         if(leben <= 0){            
             Floor floor = (Floor) getWorld();
             floor.countScore();
-            getWorld().removeObject(this);            
+            firetube.tubeZerstoeren();
+            getWorld().removeObject(this); 
         }
     }
 }

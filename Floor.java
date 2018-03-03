@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Floor extends World
 {
-    private Counter scoreCounter;
+    private Counter scoreCounter = new Counter("Score: ");
+    private Health health = new Health("Leben: ");
     private TankBrownFiretube tube;
 
 
@@ -26,10 +27,16 @@ public class Floor extends World
        // while(gameover == false){
         //   createTankBrown();
         //}
-              
-        scoreCounter = new Counter("Score: ");
-        addObject(scoreCounter, 60, 380);
-        prepare();            
+        
+        health.setLeben(5);
+        addObject(health, 50, 70);
+
+        addObject(scoreCounter, 50, 50);
+        prepare();
+        
+        
+       //GreenfootImage image = new GreenfootImage(100, 20);
+       //image.drawString("Hello World", 10, 16);
     }
     public void act() 
     {
@@ -47,14 +54,14 @@ public class Floor extends World
     {       
         TankBlue tankblue = new TankBlue();
         addObject(tankblue, 297, 205);
-        tankblue.setLocation(41, 199);
-        Firetube firetube = new Firetube();
-        addObject(firetube, 298, 189);        
-        firetube.setLocation(42, 198);
+        tankblue.setLocation(50, getHeight()/2);
+       // Firetube firetube = new Firetube();
+        //addObject(firetube, 298, 189);        
+        //firetube.setLocation(42, 198);
         
-        Health healthbar= new Health(50,10);
-        showText("Leben: "+ spielerLeben, getWidth()-50  , 20);
-        showText("Treffer: "+ treffer, getWidth()-50  , 70);
+        //Health healthbar= new Health(50,10);
+        //showText("Leben: "+ spielerLeben, getWidth()-50  , 20);
+        //showText("Treffer: "+ treffer, getWidth()-50  , 70);
         createBlock(3);
     }
     int duration = 0;
@@ -81,8 +88,8 @@ public class Floor extends World
             }
 
             tankBrownCounter++;
-            tube = new TankBrownFiretube(xPos-40, yPos);            
-            addObject(tube, xPos-40, yPos);        
+            //tube = new TankBrownFiretube(xPos-40, yPos);            
+            //addObject(tube, xPos-40, yPos);        
             //currentTime = System.currentTimeMillis();
             
         }
@@ -91,6 +98,11 @@ public class Floor extends World
     public void countScore()
     {
          scoreCounter.add(1);
+    }
+    
+    public void countHealth()
+    {
+         health.updateLeben(1);
     }
     
     
@@ -102,7 +114,7 @@ public class Floor extends World
     
     public void showScore(){
         treffer++;
-        showText("Treffer: "+ treffer, getWidth()-50  , 70);
+       
     }
     public void createBlock(int num){
         int xPos = getWidth()/3;

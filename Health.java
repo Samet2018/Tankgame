@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.awt.*;
 /**
  * Write a description of class Health here.
  * 
@@ -8,31 +8,58 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Health extends Actor
 {
-    public Health(int x, int y){
-        GreenfootImage img = new GreenfootImage(x, y);
-        float fontSize = 35.0f; //change this to the font size that you want
-        Font font = img.getFont();
-        font = font.deriveFont(12);
-        img.setFont(font);
-    
-            
-        img.drawString("" + 100, 10, 100); //this x and y position is the bottom-left of the first letter.
-        setImage(img);
+    private int leben = 0;
+    private String text;
+    private int stringLength;
+    private static final Color textColor = new Color(0, 0, 0);
+
+    public Health(String prefix)
+    {
+        text = prefix;
+        stringLength = (text.length() + 2) * 10;
+
+        setImage(new GreenfootImage(stringLength, 30));
+        GreenfootImage image = getImage();
+        image.setColor(textColor);
+
+        updateImage();
+    }
+    public void setLeben(int leben){
+        this.leben = leben;
+    }
+    public void updateLeben(int schaden){
+        if(leben <= 0){
+            leben = 0;
+        }else{
+            this.leben =this.leben - schaden;
+        }
+        
     }
     /**
-     * Act - do whatever the Health wants to do. This method is called whenever
+     * Act - do whatever the Counter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        GreenfootImage img = new GreenfootImage(100, 100);
-        float fontSize = 35.0f; //change this to the font size that you want
-        Font font = img.getFont();
-        font = font.deriveFont(12);
-        img.setFont(font);
-    
-            
-        img.drawString("" + 100, 10, 100); //this x and y position is the bottom-left of the first letter.
-        setImage(img);
+        // Add your action code here.
+         //if(value < ziel) {
+           // value++;
+            //updateImage();
+        //}
+        //else if(value > ziel) {
+          //  value--;
+           updateImage();
+        //}
     }    
+    
+
+    /**
+     * Make the image
+     */
+    private void updateImage()
+    {
+        GreenfootImage image = getImage();
+        image.clear();
+        image.drawString(text + leben, 1, 12);        
+    }
 }

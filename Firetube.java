@@ -19,20 +19,25 @@ public class Firetube extends Actor
             turnTowards(mouse.getX(), mouse.getY());
         }
         shoot();
+
+    }
+
+    public void updateYPosition(int x, int y){
+        setLocation(x, y);
     }
 
     public void shoot(){
 
         MouseInfo mouse = Greenfoot.getMouseInfo();
-        if(Greenfoot.mouseClicked(null)){
+        if(Greenfoot.mouseClicked(null)){            
             Projectile projectile = new Projectile(getX(),getY());
             projectile.setRotation(getRotation());
             int x = getX();
             int y = getY();
             // TODO: verschiebung von projektilen zu Kanonenrohrspitze
-            getWorld().addObject(projectile,x, y);         
+
+            getWorld().addObject(projectile,x, y);             
         }
     }
 }
- 
 
